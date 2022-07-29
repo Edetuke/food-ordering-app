@@ -1,4 +1,4 @@
-import foodImg from "../../assets/food.jpg";
+import foodImg from "../../assets/meals.jpeg";
 import classes from "./Header.module.css";
 import { Fragment } from "react";
 
