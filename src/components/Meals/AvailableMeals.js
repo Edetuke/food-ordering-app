@@ -6,13 +6,13 @@ import MealsItem from "./MealsItem/MealsItem";
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchMeals = async () => {
       const response = await fetch(
         "https://react-http-9a199-default-rtdb.firebaseio.com/Meals.json"
       );
-      console.log(response);
       const responseData = await response.json();
 
       const loadedMeals = [];
@@ -27,10 +27,19 @@ const AvailableMeals = () => {
       }
 
       setMeals(loadedMeals);
+      setIsLoading(false);
     };
 
     fetchMeals();
   }, []);
+
+  if (isLoading) {
+    return (
+      <section className={classes.MealsLoading}>
+        <p>Loading...</p>
+      </section>
+    );
+  }
 
   const mealsList = meals.map((meal) => (
     <MealsItem
